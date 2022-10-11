@@ -38,7 +38,7 @@ type Job struct {
 	Desc string
 }
 
-func GetHttpHtmlContent(url string, selector string, sel interface{}) (string, error) {
+func GetHttpHtmlContent(url string, selector string) (string, error) {
 	options := []chromedp.ExecAllocatorOption{
 		chromedp.Flag("headless", true), // debug使用
 		chromedp.Flag("blink-settings", "imagesEnabled=false"),
@@ -105,7 +105,7 @@ func main() {
 	datas := make([]Job, 0)
 	for i := 1; i <= 5; i++ {
 		url := fmt.Sprintf(s, 1)
-		content, err := GetHttpHtmlContent(url, title, "")
+		content, err := GetHttpHtmlContent(url, title)
 		if err != nil {
 			panic(err)
 		}
